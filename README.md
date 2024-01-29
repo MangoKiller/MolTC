@@ -38,7 +38,7 @@ conda env create -f environment.yml
 **data processing.** Run the following script for data processing on the Drugbank dataset:
 
 ```bash
-python new.py
+python drugbank_ddi.py
 ```
 
 **training stage.** Run the following script for training stage on the Drugbank dataset:
@@ -57,7 +57,7 @@ python CompSol.py
 ```
 
 ```bash
-python Pretrain.py
+python pretrain_data.py
 ```
 
 **pretraining stage.** Run the following script for pretraining stage on the CombiSolv-QM dataset:
