@@ -15,7 +15,6 @@ To address these challenges, this work proposes a novel multi-modal LLM for Mole
 
 ## MolCA's Training Pipeline
 
-![fig3](./static/images/stage1.jpg)
 
 * <b>Pretrain Stage 1.</b> The projector and the encoder are trained to extract the molecule features that are the most relevant to the text. This stage endows the resulting model with powerful molecule-text retrieval ability. 
 
