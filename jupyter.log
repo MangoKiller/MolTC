@@ -1,0 +1,20 @@
+nohup: ignoring input
+[W 16:56:34.234 NotebookApp] Collisions detected in /home/dwj/.jupyter/jupyter_notebook_config.py and /home/dwj/.jupyter/jupyter_notebook_config.json config files. /home/dwj/.jupyter/jupyter_notebook_config.json has higher priority: {
+      "NotebookApp": {
+        "password": "'argon2:$argon2id$v=19$m=10240,t=10,p=8$IM8DYp9/Xx+DQS2piH6ifg$WSoH88VGbvMkCP5YBwo1obg+KxXFZCA7/bM3tpFEwa8' ignored, using 'argon2:$argon2id$v=19$m=10240,t=10,p=8$jURr3DRyZAzKTInvtvbpdg$ARwccGfZRQR3KQOSWypVLAo8A/4QBbeQ0YU6+2vFhwE'"
+      }
+    }
+[I 16:56:35.065 NotebookApp] [nb_conda_kernels] enabled, 7 kernels found
+[W 16:56:35.719 NotebookApp] WARNING: The notebook server is listening on all IP addresses and not using encryption. This is not recommended.
+[I 16:56:35.720 NotebookApp] The port 9999 is already in use, trying another port.
+[I 16:56:35.720 NotebookApp] The port 10000 is already in use, trying another port.
+[I 16:56:35.720 NotebookApp] The port 10001 is already in use, trying another port.
+[I 16:56:35.721 NotebookApp] The port 10002 is already in use, trying another port.
+[I 16:56:35.721 NotebookApp] The port 10003 is already in use, trying another port.
+[I 16:56:35.915 NotebookApp] JupyterLab extension loaded from /home/dwj/anaconda3/lib/python3.8/site-packages/jupyterlab
+[I 16:56:35.915 NotebookApp] JupyterLab application directory is /home/dwj/anaconda3/share/jupyter/lab
+[I 16:56:36.469 NotebookApp] [nb_conda] enabled
+[I 16:56:36.470 NotebookApp] Serving notebooks from local directory: /home/dwj/code
+[I 16:56:36.470 NotebookApp] The Jupyter Notebook is running at:
+[I 16:56:36.470 NotebookApp] http://node02:10097/
+[I 16:56:36.470 NotebookApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
