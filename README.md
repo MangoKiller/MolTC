@@ -1,6 +1,6 @@
 # MolTC: A Unified Multi-modal  Large Language Model For Molecular Relational Learning Enhanced by Chain-of-thought
 
-Codes of our EMNLP2023 paper. [[Paper Link](https://arxiv.org/abs/2310.12798)], [[Website](https://acharkq.github.io/MolCA/)], [[Demo](https://8b8760bb1ba284ef54.gradio.live)]
+Codes of our ACL2024 paper.
 
 Authors: Junfeng Fang, Shuai Zhang, Chang Wu, Zhiyuan Liu, Sihang Li, Kun Wang, Wenjie Du, Xiang Wang, Xiangnan He
 
@@ -8,11 +8,10 @@ Authors: Junfeng Fang, Shuai Zhang, Chang Wu, Zhiyuan Liu, Sihang Li, Kun Wang, 
 ## Comparison to Previous Molecule-Text Modeling Methods
 
 Molecular Relational Learning (MRL), aiming to understand interactions between molecular pairs, plays a pivotal role in advancing biochemical research.
-% However, the exhaustive experimental validation of these interactions is notoriously time-consuming and costly. In response, 
 Recently, the adoption of large language models (LLMs), known for their vast knowledge repositories and advanced logical inference capabilities, has emerged as a promising way for efficient and effective MRL.
 Despite their potential, these methods predominantly rely on the textual data, thus not fully harnessing the wealth of structural information inherent in molecular graphs.
 Moreover, the absence of a unified framework exacerbates the information underutilization, as it hinders the sharing of interaction rationale learned across diverse datasets.
-To address these challenges, this work proposes a novel multi-modal LLM for \textbf{Mol}ecular in\textbf{T}eraction prediction following \textbf{C}hain-of-Thought (CoT) theory, termed \textbf{MolTC}, which can efficiently integrate rich graphical information of molecular pairs. For achieving a unified MRL, MolTC innovatively develops a dynamic parameter-sharing strategy for cross-dataset information exchange, and introduces a \textit{Multi-hierarchical CoT} principle to refine training paradigm. 
+To address these challenges, this work proposes a novel multi-modal LLM for Molecular in Teraction prediction following Chain-of-Thought (CoT) theory, termed MolTC, which can efficiently integrate rich graphical information of molecular pairs. For achieving a unified MRL, MolTC innovatively develops a dynamic parameter-sharing strategy for cross-dataset information exchange, and introduces a Multi-hierarchical CoT principle to refine training paradigm. 
 
 ## MolCA's Training Pipeline
 
