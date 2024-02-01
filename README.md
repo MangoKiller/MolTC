@@ -1,4 +1,4 @@
-# MolTC: A Unified Multi-modal Framework Harnessing the Power of Large Language Model For Molecular Relational Learning
+# MolTC: Towards Molecular Relational Modeling In Language Models
 
 Authors: Junfeng Fang, Shuai Zhang, Chang Wu, Zhiyuan Liu, Sihang Li, Kun Wang, Wenjie Du, Xiang Wang, Xiangnan He
 
