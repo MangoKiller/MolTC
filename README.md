@@ -1,6 +1,4 @@
-# MolTC: A Unified Multi-modal  Large Language Model For Molecular Relational Learning Enhanced by Chain-of-thought
-
-Codes of our ACL2024 paper.
+# MolTC: A Unified Multi-modal Framework Harnessing the Power of Large Language Model For Molecular Relational Learning
 
 Authors: Junfeng Fang, Shuai Zhang, Chang Wu, Zhiyuan Liu, Sihang Li, Kun Wang, Wenjie Du, Xiang Wang, Xiangnan He
 
