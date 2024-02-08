@@ -1,18 +1,5 @@
 # MolTC: Towards Molecular Relational Modeling In Language Models
 
-Authors: Junfeng Fang, Shuai Zhang, Chang Wu, Zhiyuan Liu, Sihang Li, Kun Wang, Wenjie Du, Xiang Wang, Xiangnan He
-
-
-## Comparison to Previous Molecule-Text Modeling Methods
-
-Molecular Relational Learning (MRL), aiming to understand interactions between molecular pairs, plays a pivotal role in advancing biochemical research.
-Recently, the adoption of large language models (LLMs), known for their vast knowledge repositories and advanced logical inference capabilities, has emerged as a promising way for efficient and effective MRL.
-Despite their potential, these methods predominantly rely on the textual data, thus not fully harnessing the wealth of structural information inherent in molecular graphs.
-Moreover, the absence of a unified framework exacerbates the information underutilization, as it hinders the sharing of interaction rationale learned across diverse datasets.
-To address these challenges, this work proposes a novel multi-modal LLM for Molecular in Teraction prediction following Chain-of-Thought (CoT) theory, termed MolTC, which can efficiently integrate rich graphical information of molecular pairs. For achieving a unified MRL, MolTC innovatively develops a dynamic parameter-sharing strategy for cross-dataset information exchange, and introduces a Multi-hierarchical CoT principle to refine training paradigm. 
-
-## MolCA's Training Pipeline
-
 
 
 ## Requirements
