@@ -41,9 +41,17 @@ python TWOSIDES.py
 **Fine-tune stage.** Run the following script for training stage on the Drugbank, ZhangDDI, ChChMiner, DeepDDI, TWOSIDES dataset:
 
 ```bash
-python stage2.py --root 'data/ddi_data/drugbank/train/' --valid_root 'data/ddi_data/drugbank/valid/' --devices '0,1,2,3' --filename "ft_pubchem324k_new" --stage2_path "all_checkpoints/ft_pubchem324k_1/last.ckpt" --opt_model 'facebook/galactica-1.3b' --max_epochs 100 --mode ft --prompt '[START_I_SMILES]{}[END_I_SMILES]. ' --tune_gnn --llm_tune lora --inference_batch_size 4 --save_every_n_epochs 10  --batch_size 32 --DDI True --caption_eval_epoch 100
+python stage2.py --root 'data/Drugbank/train/' --devices '4,6,7' --filename "ft_ddi_value_stage2_new" --stage2_path "all_checkpoints/last.ckpt" --opt_model 'facebook/galactica-1.3b' --max_epochs 100 --mode ft --prompt '[START_I_SMILES]{}[END_I_SMILES]. ' --tune_gnn --llm_tune lora --inference_batch_size 4 --save_every_n_epochs 10  --batch_size 36 --solve True --caption_eval_epoch 50    --max_len 30  --init_checkpoint  "all_checkpoints/last.ckpt" 
 ```
-
+```bash
+python stage2.py --root 'data/Zhangddi_data/train/' --devices '4,6,7' --filename "ft_ddi_value_stage2_new16" --stage2_path "all_checkpoints/last.ckpt" --opt_model 'facebook/galactica-1.3b' --max_epochs 100 --mode ft --prompt '[START_I_SMILES]{}[END_I_SMILES]. ' --tune_gnn --llm_tune lora --inference_batch_size 4 --save_every_n_epochs 10  --batch_size 42 --solve True --caption_eval_epoch 50    --max_len 30  --init_checkpoint  "all_checkpoints/last.ckpt" 
+```
+```bash
+python stage2.py --root 'data/ChChMiner/train/' --devices '4,5,6,7' --filename "ft_ddi_value_stage2_new18" --stage2_path "all_checkpoints/last.ckpt" --opt_model 'facebook/galactica-1.3b' --max_epochs 50 --mode ft --prompt '[START_I_SMILES]{}[END_I_SMILES]. ' --tune_gnn --llm_tune lora --inference_batch_size 4 --save_every_n_epochs 5  --batch_size 48  --solve True --caption_eval_epoch 50    --max_len 30  --init_checkpoint  "all_checkpoints/last.ckpt" 
+```
+```bash
+python stage2.py --root 'data/DeepDDI/train/' --devices '4,5,6,7' --filename "ft_ddi_value_stage2_new20" --stage2_path "all_checkpoints/last.ckpt" --opt_model 'facebook/galactica-1.3b' --max_epochs 40 --mode ft --prompt '[START_I_SMILES]{}[END_I_SMILES]. ' --tune_gnn --llm_tune lora --inference_batch_size 4 --save_every_n_epochs 5  --batch_size 36  --solve True --caption_eval_epoch 40    --max_len 30  --init_checkpoint  "all_checkpoints/last.ckpt"
+```
 
 ### Training the Model from Solvation Gibbs Free Energy Prediction
 
