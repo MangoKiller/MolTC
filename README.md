@@ -20,6 +20,11 @@ conda env create -f environment.yml
 
 ## Reproduce the results
 
+**pretraining stage1.** We randomly recombine the molecules in the molecule set in pairs, so that the large language model can recognize two molecules.:
+
+```bash
+python stage2.py --root 'data/solve_data/random_test/' --devices '4,5' --filename "stage2" --stage1_path "all_checkpoints/share/stage1.ckpt" --opt_model 'facebook/galactica-1.3b' --max_epochs 10 --mode pretrain --prompt '[START_I_SMILES]{}[END_I_SMILES].' --tune_gnn --llm_tune freeze --inference_batch_size 2  --double True --batch_size 16
+
 ### Training the Model from DDI
 
 **data processing.** Run the following script for data processing on the Drugbank, ZhangDDI, ChChMiner, DeepDDI, TWOSIDES dataset:
@@ -32,7 +37,7 @@ python DeepDDI.py
 python TWOSIDES.py
 ```
 
-**training stage.** Run the following script for training stage on the Drugbank dataset:
+**Fine-tune stage.** Run the following script for training stage on the Drugbank, ZhangDDI, ChChMiner, DeepDDI, TWOSIDES dataset:
 
 ```bash
 python stage2.py --root 'data/ddi_data/drugbank/train/' --valid_root 'data/ddi_data/drugbank/valid/' --devices '0,1,2,3' --filename "ft_pubchem324k_new" --stage2_path "all_checkpoints/ft_pubchem324k_1/last.ckpt" --opt_model 'facebook/galactica-1.3b' --max_epochs 100 --mode ft --prompt '[START_I_SMILES]{}[END_I_SMILES]. ' --tune_gnn --llm_tune lora --inference_batch_size 4 --save_every_n_epochs 10  --batch_size 32 --DDI True --caption_eval_epoch 100
