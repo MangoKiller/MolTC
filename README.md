@@ -24,6 +24,7 @@ conda env create -f environment.yml
 
 ```bash
 python stage2.py --root 'data/solve_data/random_test/' --devices '4,5' --filename "stage2" --stage1_path "all_checkpoints/share/stage1.ckpt" --opt_model 'facebook/galactica-1.3b' --max_epochs 10 --mode pretrain --prompt '[START_I_SMILES]{}[END_I_SMILES].' --tune_gnn --llm_tune freeze --inference_batch_size 2  --double True --batch_size 16
+```
 
 ### Training the Model from DDI
 
