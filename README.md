@@ -12,8 +12,8 @@ conda env create -f environment.yml
 
 ## Dataset
 
-* **Drugbank**.
-* **CombiSolv-QM, CompSol.**
+* **Drugbank, ZhangDDI, ChChMiner, DeepDDI, TWOSIDES**.
+* **CombiSolv-QM, CompSol, FreeSolv, Abraham, CombiSolv.**
 * You can download data and pre-trained models from the link  [link](directory.https://pan.baidu.com/s/1JiZOJPTTsiri9M_lJN_l9w?pwd=9ww5 ), [link](https://pan.baidu.com/s/1Ee-FK5NL_j1Twwsfdq2Cbg?pwd=go8h), [link](https://pan.baidu.com/s/1mnl_mUjs7--noZfv8lctEw?pwd=mdr7), [link](https://pan.baidu.com/s/1BrkcIr7KmrU4eBqGFB6ajg?pwd=8eeo), [link](https://pan.baidu.com/s/1vXXeIH0B-ofxmRD_3hf1ew?pwd=vi73),[link](https://pan.baidu.com/s/1kX5bn08TSFG4mOonRJmfyw?pwd=nffp)and put them in the current folder. 
 
 
