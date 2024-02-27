@@ -386,10 +386,11 @@ class MoleculeCaption_double_fgtvalue(Dataset):
 
     def __len__(self):
 
-        if self.root ==  "data/faguangtuan_data/data1/solve_data/train/":
-            return 15999
+        if 'train' in self.root:
+            return count_subdirectories(self.root+"text/")
         else :
-            return 2100
+            return count_subdirectories(self.root+"text/")
+            #return 100
     #return 5
 
     def __getitem__(self, index):
