@@ -10,12 +10,15 @@ See `environment.yml`. Run the following command to create a new anaconda enviro
 conda env create -f environment.yml
 ```
 
-## Dataset
+## Dataset and pretrained model
 
 * **Drugbank, ZhangDDI, ChChMiner, DeepDDI, TWOSIDES**.
 * **CombiSolv-QM, CompSol, FreeSolv, Abraham, CombiSolv.**
-* You can download all the data from the [link](https://pan.baidu.com/s/1vXXeIH0B-ofxmRD_3hf1ew?pwd=vi73) and put them in the data folder.
-* You can download all the pre-trained models from the  [link](https://pan.baidu.com/s/1vXXeIH0B-ofxmRD_3hf1ew?pwd=vi73) and put them in the current folder. 
+* You can download all the data from the [link](https://pan.baidu.com/s/1yiuP2SfMz0_u1JE4g2ZZVQ?pwd=vynw) and put them in the data folder.
+* You can download all the pre-trained models from the  [link](https://huggingface.co/chang04/ddi) and put them in the current folder.
+* You can download the GNN model from the  [link](https://pan.baidu.com/s/1zTVLI9b3MtZjjnMdJ72kVg?pwd=llb4) and put them in the current folder.
+* You can download the bert_pretrained model from the  [link](https://pan.baidu.com/s/1S2_lVFrYg3L-bfMA8DgijA?pwd=q66p) and put them in the current folder.
+* You can download the galactica-1.3b model from the  [link](https://pan.baidu.com/s/1RH7MpUF4ec-kw1wNmx39sw?pwd=h3br) and put them in the current folder.
 
 
 ## Reproduce the results
