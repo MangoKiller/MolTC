@@ -754,8 +754,8 @@ class Stage2DM_double_fgtvalue(LightningDataModule):
         self.prompt = args.prompt
         self.pretrain_dataset =  MoleculeCaption_double_fgtvalue(root, text_max_len, self.prompt)
         self.train_dataset =  MoleculeCaption_double_fgtvalue(root, text_max_len, self.prompt)
-        self.val_dataset =  MoleculeCaption_double_fgtvalue(valid_root, text_max_len, self.prompt)
-        self.test_dataset = MoleculeCaption_double_fgtvalue(valid_root, text_max_len, self.prompt)
+        self.val_dataset =  MoleculeCaption_double_fgtvalue(args.valid_root, text_max_len, self.prompt)
+        self.test_dataset = MoleculeCaption_double_fgtvalue(args.valid_root, text_max_len, self.prompt)
         self.init_tokenizer(tokenizer)
         self.mol_ph_token = '<mol>' * self.args.num_query_token
         
