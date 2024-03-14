@@ -94,10 +94,17 @@ python stage2.py --root 'data/solve_data/FreeSolv/train/' --devices '0,1,2,3' --
 If you use our codes or checkpoints, please cite our paper:
 
 @misc{fang2024moltc,
+
       title={MolTC: Towards Molecular Relational Modeling In Language Models}, 
+      
       author={Junfeng Fang and Shuai Zhang and Chang Wu and Zhengyi Yang and Zhiyuan Liu and Sihang Li and Kun Wang and Wenjie Du and Xiang Wang},
+      
       year={2024},
+      
       eprint={2402.03781},
+      
       archivePrefix={arXiv},
+      
       primaryClass={q-bio.QM}
+      
 }
