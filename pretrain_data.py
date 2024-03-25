@@ -155,8 +155,8 @@ data = np.array(data)
 print(len(data))
 #data/solve_data/train/
 idx = np.random.permutation(len(data))
-train_idx = idx[0:95000]
-valid_idx = idx[95000:100000]
+train_idx = idx[0:950000]
+valid_idx = idx[950000:1000000]
 for i in range(len(train_idx)):
     #data[train_idx[i]]
     os.makedirs("data/solve_data/pre_train/train/smiles1/"+str(i))
