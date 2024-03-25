@@ -19,7 +19,7 @@ conda env create -f environment.yml
 * **Drugbank, ZhangDDI, ChChMiner, DeepDDI, TWOSIDES**.
 * **CombiSolv-QM, CompSol, FreeSolv, Abraham, CombiSolv.**
 * You can download all the data, pre-trained models, backbone GNN models, bert_pretrained model and backbone galactica-1.3b model from the [link](https://huggingface.co/chang04/ddi)
-* data should be put in the /data folder.
+* data should be put in the /data folder.galactica-1.3b should be put in the /galactica-1.3b folder
 
 ## Reproduce the results
 
