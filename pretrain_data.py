@@ -187,29 +187,29 @@ for i in range(len(train_idx)):
     print(i)
 for i in range(len(valid_idx)):
     #data[valid_idx[i]]
-    os.makedirs("data/solve_data/pre_valid/valid/smiles1/"+str(i))
-    os.makedirs( "data/solve_data/pre_valid/valid/smiles2/"+str(i))
-    os.makedirs("data/solve_data/pre_valid/valid/graph1/"+str(i))
-    os.makedirs("data/solve_data/pre_valid/valid/graph2/"+str(i))
-    os.makedirs("data/solve_data/pre_valid/valid/text/"+str(i))
+    os.makedirs("data/solve_data/pre_train/valid/smiles1/"+str(i))
+    os.makedirs( "data/solve_data/pre_train/valid/smiles2/"+str(i))
+    os.makedirs("data/solve_data/pre_train/valid/graph1/"+str(i))
+    os.makedirs("data/solve_data/pre_train/valid/graph2/"+str(i))
+    os.makedirs("data/solve_data/pre_train/valid/text/"+str(i))
 
 
     data1 = mol_to_graph_data_obj_simple(data[valid_idx[i]][0])
-    torch.save(data1,"data/solve_data/pre_valid/valid/graph1/"+str(i)+'/graph_data.pt')
+    torch.save(data1,"data/solve_data/pre_train/valid/graph1/"+str(i)+'/graph_data.pt')
     data1 = mol_to_graph_data_obj_simple(data[valid_idx[i]][1])
-    torch.save(data1,"data/solve_data/pre_valid/valid/graph2/"+str(i)+'/graph_data.pt')
+    torch.save(data1,"data/solve_data/pre_train/valid/graph2/"+str(i)+'/graph_data.pt')
     value = data[valid_idx[i]][2]
     lower, upper = calculate_bounds(value)
     text = "The solvation Gibbs free energy of these two molecules is above "+str(lower)+" and below "+str(upper)+", so the accurate value is "+str('%.2f'%value)+";"
-    file = open("data/solve_data/pre_valid/valid/text/"+str(i)+"/text.txt","w")
+    file = open("data/solve_data/pre_train/valid/text/"+str(i)+"/text.txt","w")
     file.write(text)
     file.close()
     smiles1 = data[valid_idx[i]][0]
     smiles2 = data[valid_idx[i]][1]
-    file = open("data/solve_data/pre_valid/valid/smiles1/"+str(i)+"/text.txt","w")
+    file = open("data/solve_data/pre_train/valid/smiles1/"+str(i)+"/text.txt","w")
     file.write(smiles1)
     file.close()
-    file = open("data/solve_data/pre_valid/valid/smiles2/"+str(i)+"/text.txt","w")
+    file = open("data/solve_data/pre_train/valid/smiles2/"+str(i)+"/text.txt","w")
     file.write(smiles2)
     file.close()
     print(i)
