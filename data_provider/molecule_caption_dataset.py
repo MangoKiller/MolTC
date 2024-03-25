@@ -109,34 +109,22 @@ class MoleculeCaption_double(Dataset):
 
     def __len__(self):
 
-        if self.root ==  "data/solve_data/random_test/":
-            return 324689
+        if 'train' in self.root:
+            return count_subdirectories(self.root+"text/")
         else :
-            return 32
+            return count_subdirectories(self.root+"text/")
     #return 5
 
     def __getitem__(self, index):
         graph1_name_list = os.listdir(self.root+'graph1/'+str(index)+'/')
-        text1_name_list = os.listdir(self.root+'text1/'+str(index)+'/')
         smiles1_name_list = os.listdir(self.root+'smiles1/'+str(index)+'/')
         graph2_name_list = os.listdir(self.root+'graph2/'+str(index)+'/')
-        text2_name_list = os.listdir(self.root+'text2/'+str(index)+'/')
         smiles2_name_list = os.listdir(self.root+'smiles2/'+str(index)+'/')
+        text_name_list = os.listdir(self.root+'text/'+str(index)+'/')
         
         # load and process graph
         graph_path = os.path.join(self.root, 'graph1/'+str(index)+'/',graph1_name_list[0])
         data_graph1 = torch.load(graph_path)
-        # load and process text
-        text_path = os.path.join(self.root, 'text1/'+str(index)+'/', text1_name_list[0])
-        
-        text_list = []
-        count = 0
-        for line in open(text_path, 'r', encoding='utf-8'):
-            count += 1
-            text_list.append(line.strip('\n'))
-            if count > 100:
-                break
-        text1 = ' '.join(text_list)
         # load and process smiles
         smiles_path = os.path.join(self.root, 'smiles1/'+str(index)+'/', smiles1_name_list[0])
         with open(smiles_path, 'r', encoding='utf-8') as f:
@@ -153,17 +141,6 @@ class MoleculeCaption_double(Dataset):
         # load and process graph
         graph_path = os.path.join(self.root, 'graph2/'+str(index)+'/',graph2_name_list[0])
         data_graph2 = torch.load(graph_path)
-        # load and process text
-        text_path = os.path.join(self.root, 'text2/'+str(index)+'/', text2_name_list[0])
-        
-        text_list = []
-        count = 0
-        for line in open(text_path, 'r', encoding='utf-8'):
-            count += 1
-            text_list.append(line.strip('\n'))
-            if count > 100:
-                break
-        text2 = ' '.join(text_list) + '\n'
         # load and process smiles
         smiles_path = os.path.join(self.root, 'smiles2/'+str(index)+'/', smiles2_name_list[0])
         with open(smiles_path, 'r', encoding='utf-8') as f:
@@ -176,8 +153,18 @@ class MoleculeCaption_double(Dataset):
         else:
             smiles_prompt2 = self.prompt
             
-        smiles_prompt = smiles_prompt1+"The front is the first molecule, followed by the second molecule."+smiles_prompt2
-        text =text1+"The front is a description of the first molecule, followed by a description of the second molecule."+text2
+        smiles_prompt = smiles_prompt1+",The front is the first molecule, followed by the second molecule:"+smiles_prompt2+".Please provide the biochemical properties of the two molecules one by one."
+        # load and process text
+        text_path = os.path.join(self.root, 'text/'+str(index)+'/', text_name_list[0])
+        
+        text_list = []
+        count = 0
+        for line in open(text_path, 'r', encoding='utf-8'):
+            count += 1
+            text_list.append(line.strip('\n'))
+            if count > 100:
+                break
+        text = ' '.join(text_list)
         return data_graph1,data_graph2, text ,smiles_prompt
     
     def tokenizer_text(self, text):
