@@ -36,7 +36,7 @@ python stage2.py --root 'data/solve_data/random_test/' --devices '4,5' --filenam
 **data processing.** Run the following script for data processing on the Drugbank, ZhangDDI, ChChMiner, DeepDDI, TWOSIDES dataset:
 
 ```bash
-python Drugbank.py 
+python drugbank_ddi.py 
 python ZhangDDI.py
 python ChChMiner.py
 python DeepDDI.py
