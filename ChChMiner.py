@@ -161,31 +161,31 @@ import numpy as np
 import os
 from shutil import copy
 import pandas as pd
-data = pd.read_csv("ChChMiner_train.csv")
+data = pd.read_csv("data/ddi_data/ChChMiner_train.csv")
 data = np.array(data)
 idx = np.random.permutation(len(data))
 train_idx=idx
 
 for i in range(len(train_idx)):
     data[train_idx[i]]
-    os.makedirs("ChChMiner_data/train/smiles1/"+str(i))
-    os.makedirs("ChChMiner_data/train/smiles2/"+str(i))
-    os.makedirs("ChChMiner_data/train/graph1/"+str(i))
-    os.makedirs("ChChMiner_data/train/graph2/"+str(i))
-    os.makedirs("ChChMiner_data/train/text/"+str(i))
+    os.makedirs("data/ddi_data/ChChMiner/train/smiles1/"+str(i))
+    os.makedirs("data/ddi_data/ChChMiner/train/smiles2/"+str(i))
+    os.makedirs("data/ddi_data/ChChMiner/train/graph1/"+str(i))
+    os.makedirs("data/ddi_data/ChChMiner/train/graph2/"+str(i))
+    os.makedirs("data/ddi_data/ChChMiner/train/text/"+str(i))
 
 
     data1 = mol_to_graph_data_obj_simple(data[train_idx[i]][2])
-    torch.save(data1,"ChChMiner_data/train/graph1/"+str(i)+'/graph_data.pt')
+    torch.save(data1,"data/ddi_data/ChChMiner/train/graph1/"+str(i)+'/graph_data.pt')
     data1 = mol_to_graph_data_obj_simple(data[train_idx[i]][3])
-    torch.save(data1,"ChChMiner_data/train/graph2/"+str(i)+'/graph_data.pt')
+    torch.save(data1,"data/ddi_data/ChChMiner/train/graph2/"+str(i)+'/graph_data.pt')
 
     smiles1 = data[train_idx[i]][2]
     smiles2 = data[train_idx[i]][3]
-    file = open("ChChMiner_data/train/smiles1/"+str(i)+"/text.txt","w")
+    file = open("data/ddi_data/ChChMiner/train/smiles1/"+str(i)+"/text.txt","w")
     file.write(smiles1)
     file.close()
-    file = open("ChChMiner_data/train/smiles2/"+str(i)+"/text.txt","w")
+    file = open("data/ddi_data/ChChMiner/train/smiles2/"+str(i)+"/text.txt","w")
     file.write(smiles2)
     file.close()
     
@@ -195,7 +195,45 @@ for i in range(len(train_idx)):
     elif label == 1.0:
         text = "#Drug1 and #Drug2 exhibit drug-drug interaction."
     text3 = text+'\n'
-    file = open("ChChMiner_data/train/text/"+str(i)+"/text.txt","w")
+    file = open("data/ddi_data/ChChMiner/train/text/"+str(i)+"/text.txt","w")
+    file.write(text3)
+    file.close()
+    print(i)
+data = pd.read_csv("data/ddi_data/ChChMiner_valid.csv")
+data = np.array(data)
+idx = np.random.permutation(len(data))
+valid_idx=idx
+
+for i in range(len(valid_idx)):
+    data[valid_idx[i]]
+    os.makedirs("data/ddi_data/ChChMiner/valid/smiles1/"+str(i))
+    os.makedirs("data/ddi_data/ChChMiner/valid/smiles2/"+str(i))
+    os.makedirs("data/ddi_data/ChChMiner/valid/graph1/"+str(i))
+    os.makedirs("data/ddi_data/ChChMiner/valid/graph2/"+str(i))
+    os.makedirs("data/ddi_data/ChChMiner/valid/text/"+str(i))
+
+
+    data1 = mol_to_graph_data_obj_simple(data[valid_idx[i]][2])
+    torch.save(data1,"data/ddi_data/ChChMiner/valid/graph1/"+str(i)+'/graph_data.pt')
+    data1 = mol_to_graph_data_obj_simple(data[valid_idx[i]][3])
+    torch.save(data1,"data/ddi_data/ChChMiner/valid/graph2/"+str(i)+'/graph_data.pt')
+
+    smiles1 = data[valid_idx[i]][2]
+    smiles2 = data[valid_idx[i]][3]
+    file = open("data/ddi_data/ChChMiner/valid/smiles1/"+str(i)+"/text.txt","w")
+    file.write(smiles1)
+    file.close()
+    file = open("data/ddi_data/ChChMiner/valid/smiles2/"+str(i)+"/text.txt","w")
+    file.write(smiles2)
+    file.close()
+    
+    label = data[valid_idx[i]][4]
+    if label == 0.0:
+        text = "#Drug1 and #Drug2 do not exhibit drug-drug interaction."
+    elif label == 1.0:
+        text = "#Drug1 and #Drug2 exhibit drug-drug interaction."
+    text3 = text+'\n'
+    file = open("data/ddi_data/ChChMiner/valid/text/"+str(i)+"/text.txt","w")
     file.write(text3)
     file.close()
     print(i)
