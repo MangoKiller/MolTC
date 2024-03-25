@@ -19,7 +19,9 @@ conda env create -f environment.yml
 * **Drugbank, ZhangDDI, ChChMiner, DeepDDI, TWOSIDES**.
 * **CombiSolv-QM, CompSol, FreeSolv, Abraham, CombiSolv.**
 * You can download all the data, pre-trained models, backbone GNN models, bert_pretrained model and backbone galactica-1.3b model from the [link](https://huggingface.co/chang04/ddi)
-* data should be put in the /data folder.galactica-1.3b should be put in the /galactica-1.3b folder
+* data should be put in the /data folder. galactica-1.3b should be put in the /galactica-1.3b folder. gin_pretrained should be put in the /gin_pretrained folder. bert_pretrained should be put in the /bert_pretrained folder. pretrain1/last.ckpt should be put in the /all_checkpoints/pretrain1/ folder. 
+* For DDI-tasks,
+* For Solvation Gibbs Free Energy Prediction-tasks,
 
 ## Reproduce the results
 
@@ -68,7 +70,7 @@ python Abraham.py
 python CombiSolv.py
 ```
 
-**pretraining stage.** Run the following script for pretraining stage on the CombiSolv-QM dataset:
+**pretraining stage.** Run the following script for pretraining stage on the pretrain_data dataset:
 
 ```bash
 python stage2.py --root 'data/solve_data/pre_train/train/' --valid_root 'data/solve_data/pre_train/valid/' --devices '0,1,2,3' --filename "ft_pubchem324k_solve_value_new_new" --stage2_path "all_checkpoints/pretrain1/last.ckpt" --opt_model 'facebook/galactica-1.3b' --max_epochs 200 --mode ft --prompt '[START_I_SMILES]{}[END_I_SMILES]. ' --tune_gnn --llm_tune lora --inference_batch_size 4 --save_every_n_epochs 10  --batch_size 36 --solve True --caption_eval_epoch 200
