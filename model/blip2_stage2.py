@@ -207,7 +207,7 @@ class Blip2Stage2(pl.LightningModule):
     
     @torch.no_grad()
     def validation_step(self, batch, batch_idx, dataloader_idx):
-        if self.args.DDI == True:
+        if self.args.DDI == True or self.args.double == True :
             if (self.current_epoch+1) % self.caption_eval_epoch != 0:
                 return 
             graphs1,graphs2, prompt_tokens, texts = batch
