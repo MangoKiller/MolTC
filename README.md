@@ -18,7 +18,8 @@ conda env create -f environment.yml
 
 * **Drugbank, ZhangDDI, ChChMiner, DeepDDI, TWOSIDES**.
 * **CombiSolv-QM, CompSol, FreeSolv, Abraham, CombiSolv.**
-* You can download all the data, pre-trained models, backbone GNN models, bert_pretrained model and backbone galactica-1.3b model from the [link](https://huggingface.co/chang04/ddi) and put them in the data folder.
+* You can download all the data, pre-trained models, backbone GNN models, bert_pretrained model and backbone galactica-1.3b model from the [link](https://huggingface.co/chang04/ddi)
+* data should be put in the /data folder.
 
 ## Reproduce the results
 
@@ -60,7 +61,7 @@ python stage2.py --root 'data/DeepDDI/train/' --devices '4,5,6,7' --filename "ft
 **data processing.** Run the following script for data processing on the CombiSolv-QM, CompSol, FreeSolv, Abraham and CombiSolv dataset:
 
 ```bash
-python CombiSolv-QM.py
+python pretrain_data.py
 python CompSol.py
 python FreeSolv.py
 python Abraham.py
