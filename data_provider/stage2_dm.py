@@ -378,8 +378,8 @@ class Stage2DM_double(LightningDataModule):
 
         self.pretrain_dataset =  MoleculeCaption_double(root, text_max_len, self.prompt)
         self.train_dataset =  MoleculeCaption_double(root, text_max_len, self.prompt)
-        self.val_dataset =  MoleculeCaption_double('data/solve_data/random_valid/', text_max_len, self.prompt)
-        self.test_dataset = MoleculeCaption_double('data/solve_data/random_valid/', text_max_len, self.prompt)
+        self.val_dataset =  MoleculeCaption_double(args.valid_root, text_max_len, self.prompt)
+        self.test_dataset = MoleculeCaption_double(args.valid_root, text_max_len, self.prompt)
         self.init_tokenizer(tokenizer)
         self.mol_ph_token = '<mol>' * self.args.num_query_token
         
