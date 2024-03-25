@@ -21,7 +21,7 @@ conda env create -f environment.yml
 * You can download all the data, pre-trained models, backbone GNN models, bert_pretrained model and backbone galactica-1.3b model from the [link](https://huggingface.co/chang04/ddi)
 * data should be put in the /data folder. galactica-1.3b should be put in the /galactica-1.3b folder. gin_pretrained should be put in the /gin_pretrained folder. bert_pretrained should be put in the /bert_pretrained folder. pretrain1/last.ckpt should be put in the /all_checkpoints/pretrain1/ folder. 
 * For DDI-tasks,
-* For Solvation Gibbs Free Energy Prediction-tasks,
+* For Solvation Gibbs Free Energy Prediction-tasks,You can execute this pretraining stage and use this pretrain_data, or you can download our model directly and then fine-tune it on a small data set.pretrain_model_100w_solve should be put in the  /all_checkpoints/pretrain_model_100w_solve/ folder.
 
 ## Reproduce the results
 
@@ -78,18 +78,18 @@ python stage2.py --root 'data/solve_data/pre_train/train/' --valid_root 'data/so
 **Fine-tune stage.** Run the following script for Fine-tune stage on the CompSol dataset(At the same time, we provide you with corresponding pre-training models):
 
 ```bash
-python stage2.py --root 'data/solve_data/CompSol/train/' --valid_root 'data/solve_data/CompSol/valid/' --devices '0,1,2,3' --filename "ft_pubchem324k_solve_value_CompSol_new" --stage2_path "all_checkpoints/pretrain_model_100w_solve/epoch=99.ckpt" --opt_model 'facebook/galactica-1.3b' --max_epochs 1000 --mode ft --prompt '[START_I_SMILES]{}[END_I_SMILES]. ' --tune_gnn --llm_tune lora --inference_batch_size 4 --save_every_n_epochs 100  --batch_size 40 --solve True --caption_eval_epoch 1 --init_checkpoint "all_checkpoints/pretrain_model_100w_solve/epoch=99.ckpt" --peft_dir "save_dir_100/lora_epoch_99"
+python stage2.py --root 'data/solve_data/CompSol/train/' --valid_root 'data/solve_data/CompSol/valid/' --devices '0,1,2,3' --filename "ft_pubchem324k_solve_value_CompSol_new" --stage2_path "all_checkpoints/pretrain_model_100w_solve/epoch=99.ckpt" --opt_model 'facebook/galactica-1.3b' --max_epochs 1000 --mode ft --prompt '[START_I_SMILES]{}[END_I_SMILES]. ' --tune_gnn --llm_tune lora --inference_batch_size 4 --save_every_n_epochs 100  --batch_size 40 --solve True --caption_eval_epoch 1 --init_checkpoint "all_checkpoints/pretrain_model_100w_solve/epoch=99.ckpt" --peft_dir "all_checkpoints/pretrain_model_100w_solve/lora_epoch_99"
 ```
 
 ```bash
-python stage2.py --root 'data/solve_data/Combisolv/train/' --valid_root 'data/solve_data/Combisolv/valid/' --devices '0,1,2,3' --filename "ft_pubchem324k_solve_value_Combisolv_new_1" --stage2_path "all_checkpoints/pretrain_model_100w_solve/epoch=99.ckpt" --opt_model 'facebook/galactica-1.3b' --max_epochs 100 --mode ft --prompt '[START_I_SMILES]{}[END_I_SMILES]. ' --tune_gnn --llm_tune lora --inference_batch_size 4 --save_every_n_epochs 5  --batch_size 40 --solve True --caption_eval_epoch 1  --max_len 40 --init_checkpoint "all_checkpoints/pretrain_model_100w_solve/epoch=99.ckpt" --peft_dir "save_dir_100/lora_epoch_99"
+python stage2.py --root 'data/solve_data/Combisolv/train/' --valid_root 'data/solve_data/Combisolv/valid/' --devices '0,1,2,3' --filename "ft_pubchem324k_solve_value_Combisolv_new_1" --stage2_path "all_checkpoints/pretrain_model_100w_solve/epoch=99.ckpt" --opt_model 'facebook/galactica-1.3b' --max_epochs 100 --mode ft --prompt '[START_I_SMILES]{}[END_I_SMILES]. ' --tune_gnn --llm_tune lora --inference_batch_size 4 --save_every_n_epochs 5  --batch_size 40 --solve True --caption_eval_epoch 1  --max_len 40 --init_checkpoint "all_checkpoints/pretrain_model_100w_solve/epoch=99.ckpt" --peft_dir "all_checkpoints/pretrain_model_100w_solve/lora_epoch_99"
 ```
 
 ```bash
-python stage2.py --root 'data/solve_data/Abraham/train/' --valid_root 'data/solve_data/Abraham/valid/' --devices '0,1,2,3' --filename "ft_pubchem324k_solve_value_Abraham_new" --stage2_path "all_checkpoints/pretrain_model_100w_solve/epoch=99.ckpt" --opt_model 'facebook/galactica-1.3b' --max_epochs 1000 --mode ft --prompt '[START_I_SMILES]{}[END_I_SMILES]. ' --tune_gnn --llm_tune lora --inference_batch_size 4 --save_every_n_epochs 100  --batch_size 40 --solve True --caption_eval_epoch 1 --init_checkpoint "all_checkpoints/pretrain_model_100w_solve/epoch=99.ckpt" --peft_dir "save_dir_100/lora_epoch_99"
+python stage2.py --root 'data/solve_data/Abraham/train/' --valid_root 'data/solve_data/Abraham/valid/' --devices '0,1,2,3' --filename "ft_pubchem324k_solve_value_Abraham_new" --stage2_path "all_checkpoints/pretrain_model_100w_solve/epoch=99.ckpt" --opt_model 'facebook/galactica-1.3b' --max_epochs 1000 --mode ft --prompt '[START_I_SMILES]{}[END_I_SMILES]. ' --tune_gnn --llm_tune lora --inference_batch_size 4 --save_every_n_epochs 100  --batch_size 40 --solve True --caption_eval_epoch 1 --init_checkpoint "all_checkpoints/pretrain_model_100w_solve/epoch=99.ckpt" --peft_dir "all_checkpoints/pretrain_model_100w_solve/lora_epoch_99"
 ```
 ```bash
-python stage2.py --root 'data/solve_data/FreeSolv/train/' --valid_root 'data/solve_data/FreeSolv/valid/' --devices '0,1,2,3' --filename "ft_pubchem324k_solve_value_FreeSolv_new" --stage2_path "all_checkpoints/pretrain_model_100w_solve/epoch=99.ckpt" --opt_model 'facebook/galactica-1.3b' --max_epochs 1000 --mode eval --prompt '[START_I_SMILES]{}[END_I_SMILES]. ' --tune_gnn --llm_tune lora --inference_batch_size 4 --save_every_n_epochs 100  --batch_size 40 --solve True --caption_eval_epoch 1 --init_checkpoint "all_checkpoints/pretrain_model_100w_solve/epoch=99.ckpt" --peft_dir "save_dir_100/lora_epoch_99"
+python stage2.py --root 'data/solve_data/FreeSolv/train/' --valid_root 'data/solve_data/FreeSolv/valid/' --devices '0,1,2,3' --filename "ft_pubchem324k_solve_value_FreeSolv_new" --stage2_path "all_checkpoints/pretrain_model_100w_solve/epoch=99.ckpt" --opt_model 'facebook/galactica-1.3b' --max_epochs 1000 --mode eval --prompt '[START_I_SMILES]{}[END_I_SMILES]. ' --tune_gnn --llm_tune lora --inference_batch_size 4 --save_every_n_epochs 100  --batch_size 40 --solve True --caption_eval_epoch 1 --init_checkpoint "all_checkpoints/pretrain_model_100w_solve/epoch=99.ckpt" --peft_dir "all_checkpoints/pretrain_model_100w_solve/lora_epoch_99"
 ```
 
 ## Citation
