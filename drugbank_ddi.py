@@ -142,7 +142,7 @@ import numpy as np
 import os 
 text = pd.read_csv('data/ddi_data/Interaction_information.csv')
 #首先解决testing的数据集
-test_data = pd.read_csv('data/ddi_data/DDI_data/ddi_test.csv')
+test_data = pd.read_csv('data/ddi_data/drugbank_test.csv')
 text = np.array(text)
 print(text[0][3])
 dic = {}
@@ -179,7 +179,7 @@ for i in range(len(test_data)):
     file.close()
 text = pd.read_csv('data/ddi_data/Interaction_information.csv')
 #首先解决training的数据集
-train_data = pd.read_csv('data/ddi_data/DDI_data/ddi_training.csv')
+train_data = pd.read_csv('data/ddi_data/drugbank_training.csv')
 text = np.array(text)
 print(text[0][3])
 dic = {}
@@ -216,7 +216,7 @@ for i in range(len(train_data)):
     file.close()
 text = pd.read_csv('data/ddi_data/Interaction_information.csv')
 #首先解决validing的数据集
-valid_data = pd.read_csv('data/ddi_data/DDI_data/ddi_validation.csv')
+valid_data = pd.read_csv('data/ddi_data/drugbank_validation.csv')
 text = np.array(text)
 print(text[0][3])
 dic = {}
