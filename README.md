@@ -20,7 +20,7 @@ conda env create -f environment.yml
 * **CombiSolv-QM, CompSol, FreeSolv, Abraham, CombiSolv.**
 * You can download all the data, pre-trained models, backbone GNN models, bert_pretrained model and backbone galactica-1.3b model from the [link](https://huggingface.co/chang04/ddi)
 * data should be put in the /data folder. galactica-1.3b should be put in the /galactica-1.3b folder. gin_pretrained should be put in the /gin_pretrained folder. bert_pretrained should be put in the /bert_pretrained folder. pretrain1/last.ckpt should be put in the /all_checkpoints/pretrain1/ folder. 
-* For DDI-tasks,
+* For DDI-tasks,We expose the code for training separately on all ddi datasets. We will further release the code for joint training on all datasets in the future.
 * For Solvation Gibbs Free Energy Prediction-tasks,You can execute this pretraining stage and use this pretrain_data, or you can download our model directly and then fine-tune it on a small data set.pretrain_model_100w_solve should be put in the  /all_checkpoints/pretrain_model_100w_solve/ folder.This fine-tuning process may end in a few eopch, so it needs to be truncated in time. For the Freesolve data set, we found that fine-tuning directly leads to overfitting. So we directly use the pre-trained model to predict.
 
 ## Reproduce the results
