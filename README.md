@@ -25,7 +25,7 @@ conda env create -f environment.yml
 
 ## 2024.5.24 content update
 
-**1.** We changed the molecule pair recognition mode of pretraining stage1 from adding the corresponding prompt to adding the corresponding specified segmentation complex '\<s>' to distinguish the positions of the two molecules. Therefore, when you perform downstream tasks, please perform corresponding modifications based on the division of downstream tasks in the drugbank data set.
+**1.** We changed the molecule pair recognition mode of pretraining stage1 from adding the corresponding prompt to adding the corresponding specified segmentation complex '\<s>' to distinguish the positions of the two molecules. Therefore, when you perform downstream tasks, please perform corresponding modifications based on the division of downstream tasks in the drugbank data set:drugbank_ddi.py.
 
 **2.** We have merged the various data sets of DDI and provided the relevant data sets to the above link. The training method is the same as the zhangddi data set.
 
