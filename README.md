@@ -23,7 +23,18 @@ conda env create -f environment.yml
 * For DDI-tasks,We expose the code for training separately on all ddi datasets. We will further release the code for joint training on all datasets in the future.
 * For Solvation Gibbs Free Energy Prediction-tasks,You can execute this pretraining stage and use this pretrain_data, or you can download our model directly and then fine-tune it on a small data set.pretrain_model_100w_solve should be put in the  /all_checkpoints/pretrain_model_100w_solve/ folder.This fine-tuning process may end in a few eopch, so it needs to be truncated in time. For the Freesolve data set, we found that fine-tuning directly leads to overfitting. So we directly use the pre-trained model to predict.
 
+## 2024.5.24 content update
+
+**1.** We changed the molecule pair recognition mode of pretraining stage1 from adding the corresponding prompt to adding the corresponding specified segmentation complex '<s>' to distinguish the positions of the two molecules. Therefore, when you perform downstream tasks, please perform corresponding modifications based on the division of downstream tasks in the drugbank data set.
+
+**2.** We have merged the various data sets of DDI and provided the relevant data sets to the above link. The training method is the same as the zhangddi data set.
+
+**3.** We have optimized the thinking chain model corresponding to the DDI task. When describing the properties of two molecules, the description should be shorter, otherwise it will affect the final core DDI prediction. Our prediction of the properties of each drug allows it to be less than 30 words at most. The data set file name of the relevant example is: output.csv
+
+
+
 ## Reproduce the results
+
 
 
 
