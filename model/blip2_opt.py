@@ -153,7 +153,7 @@ class Blip2OPT(Blip2Base):
 
         opt_model = "./galactica-1.3b"
         self.opt_tokenizer = AutoTokenizer.from_pretrained(opt_model, use_fast=False, padding_side='right')
-        self.opt_tokenizer.add_special_tokens({'pad_token': '<pad>'})
+        self.opt_tokenizer.add_special_tokens({'pad_token': '<pad>', 'sep_token': '</s>'})
         self.opt_tokenizer.add_tokens('<mol>') # molecule placeholder
         self.mol_token = '<mol>'
         self.opt_tokenizer.mol_token_id = self.opt_tokenizer("<mol>", add_special_tokens=False).input_ids[0]
