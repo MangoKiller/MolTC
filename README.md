@@ -25,6 +25,12 @@ conda env create -f environment.yml
 
 ## Reproduce the results
 
+## 2024.5.24 content update
+**1.** We changed the molecule pair recognition mode of pretraining stage1 from adding the corresponding prompt to adding the corresponding specified segmentation complex '<s>' to distinguish the positions of the two molecules. Therefore, when you perform downstream tasks, please perform corresponding modifications based on the division of downstream tasks in the drugbank data set.
+**2.** We have merged the various data sets of DDI and provided the relevant data sets to the above link. The training method is the same as the zhangddi data set.
+**3.** We have optimized the thinking chain model corresponding to the DDI task. When describing the properties of two molecules, the description should be shorter, otherwise it will affect the final core DDI prediction. Our prediction of the properties of each drug allows it to be less than 30 words at most. The data set file name of the relevant example is: output.csv
+
+
 **pretraining stage1.** We randomly recombine the molecules in the molecule set in pairs, so that the large language model can recognize two molecules:
 
 ```bash
