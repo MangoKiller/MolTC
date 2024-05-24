@@ -180,8 +180,8 @@ def calculate_bounds(number):
 #data/ddi_data/train/
 idx = np.random.permutation(len(data))
 #train_idx=idx
-train_idx = idx[0:99900]
-valid_idx = idx[99900:100000]
+train_idx = idx[0:99000]
+valid_idx = idx[99000:100000]
 for i in range(len(train_idx)):
     data[train_idx[i]]
     os.makedirs("qformer_data/train/smiles1/"+str(i))
@@ -216,7 +216,7 @@ for i in range(len(train_idx)):
     #text = dic["DDI type "+str(data[train_idx[i]][4]+1)
     #text3 = text1+';'+text2+';'+
     #text3 = text+'\n'
-    text3 = "The properties of the first molecule are "+text1+';and the properties of the second molecule are '+text2+'\n'
+    text3 = '</s> '+text1+' </s>'+' </s> '+text2+' </s> '+'\n'
     file = open("qformer_data/train/text/"+str(i)+"/text.txt","w")
     file.write(text3)
     file.close()
@@ -255,7 +255,7 @@ for i in range(len(valid_idx)):
     #text = dic["DDI type "+str(data[i][4]+1)]
     #text3 = text1+';'+text2+';'+text
     #text3 = text+'\n'
-    text3 = "The properties of the first molecule are "+text1+';and the properties of the second molecule are '+text2+'\n'
+    text3 = '</s> '+text1+' </s>'+' </s> '+text2+' </s> '+'\n'
     file = open("qformer_data/val/text/"+str(i)+"/text.txt","w")
     file.write(text3)
     file.close()
