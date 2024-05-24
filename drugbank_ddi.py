@@ -140,11 +140,23 @@ def mol_to_graph_data_obj_simple(smiles):
 import pandas as pd
 import numpy as np
 import os 
+import csv
 text = pd.read_csv('data/ddi_data/Interaction_information.csv')
 #首先解决testing的数据集
-test_data = pd.read_csv('data/ddi_data/drugbank_test.csv')
+test_data = pd.read_csv('data/ddi_data/DDI_data/ddi_test.csv')
 text = np.array(text)
 print(text[0][3])
+
+
+
+output_dict = {}
+with open('data/ddi_data/output_modified.csv', 'r', encoding='utf-8') as csvfile:
+    reader = csv.reader(csvfile)
+    for row in reader:
+        output_dict[row[0]] = row[1]
+
+
+
 dic = {}
 for i in range(len(text)):
     dic[text[i][3]] = text[i][1]
@@ -166,6 +178,8 @@ for i in range(len(test_data)):
     data = mol_to_graph_data_obj_simple(test_data[i][7])
     torch.save(data, "data/ddi_data/drugbank/test/graph2/"+str(i)+'/graph_data.pt')
     text = dic["DDI type "+str(test_data[i][4]+1)]
+
+    text='</s> '+output_dict[test_data[i][6]]+' </s>'+' </s> '+output_dict[test_data[i][7]]+' </s> '+text
     file = open("data/ddi_data/drugbank/test/text/"+str(i)+"/text.txt","w")
     file.write(text)
     file.close()
@@ -179,7 +193,7 @@ for i in range(len(test_data)):
     file.close()
 text = pd.read_csv('data/ddi_data/Interaction_information.csv')
 #首先解决training的数据集
-train_data = pd.read_csv('data/ddi_data/drugbank_training.csv')
+train_data = pd.read_csv('data/ddi_data/DDI_data/ddi_training.csv')
 text = np.array(text)
 print(text[0][3])
 dic = {}
@@ -203,6 +217,8 @@ for i in range(len(train_data)):
     data = mol_to_graph_data_obj_simple(train_data[i][7])
     torch.save(data, "data/ddi_data/drugbank/train/graph2/"+str(i)+'/graph_data.pt')
     text = dic["DDI type "+str(train_data[i][4]+1)]
+
+    text='</s> '+output_dict[train_data[i][6]]+' </s>'+' </s> '+output_dict[train_data[i][7]]+' </s> '+text
     file = open("data/ddi_data/drugbank/train/text/"+str(i)+"/text.txt","w")
     file.write(text)
     file.close()
@@ -216,7 +232,7 @@ for i in range(len(train_data)):
     file.close()
 text = pd.read_csv('data/ddi_data/Interaction_information.csv')
 #首先解决validing的数据集
-valid_data = pd.read_csv('data/ddi_data/drugbank_validation.csv')
+valid_data = pd.read_csv('data/ddi_data/DDI_data/ddi_validation.csv')
 text = np.array(text)
 print(text[0][3])
 dic = {}
@@ -240,6 +256,7 @@ for i in range(len(valid_data)):
     data = mol_to_graph_data_obj_simple(valid_data[i][7])
     torch.save(data, "data/ddi_data/drugbank/valid/graph2/"+str(i)+'/graph_data.pt')
     text = dic["DDI type "+str(valid_data[i][4]+1)]
+    text='</s> '+output_dict[valid_data[i][6]]+' </s>'+' </s> '+output_dict[valid_data[i][7]]+' </s> '+text
     file = open("data/ddi_data/drugbank/valid/text/"+str(i)+"/text.txt","w")
     file.write(text)
     file.close()
