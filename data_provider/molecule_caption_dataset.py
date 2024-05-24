@@ -153,7 +153,7 @@ class MoleculeCaption_double(Dataset):
         else:
             smiles_prompt2 = self.prompt
             
-        smiles_prompt = smiles_prompt1+",The front is the first molecule, followed by the second molecule:"+smiles_prompt2+".Please provide the biochemical properties of the two molecules one by one."
+        smiles_prompt = '</s> '+smiles_prompt1+' </s>'+' </s> '+smiles_prompt2+' </s>'
         # load and process text
         text_path = os.path.join(self.root, 'text/'+str(index)+'/', text_name_list[0])
         
@@ -242,7 +242,7 @@ class MoleculeCaption_double_value(Dataset):
         else:
             smiles_prompt2 = self.prompt
             
-        smiles_prompt = smiles_prompt1+"The front is solvent, followed by solute."+smiles_prompt2+",what is the solvation Gibbs free energy of this pair of molecules?"
+        smiles_prompt = '</s> '+smiles_prompt1+' </s>'+' </s>'+smiles_prompt2+' </s> .'+" what is the solvation Gibbs free energy of this pair of molecules?"
         # load and process text
         text_path = os.path.join(self.root, 'text/'+str(index)+'/', text_name_list[0])
         
@@ -330,7 +330,7 @@ class MoleculeCaption_double_DDIvalue(Dataset):
         else:
             smiles_prompt2 = self.prompt
             
-        smiles_prompt = smiles_prompt1+"The front is the first molecule, followed by the second molecule."+smiles_prompt2+"What are the side effects of these two drugs?"
+        smiles_prompt = '</s> '+smiles_prompt1+' </s>'+' </s>'+smiles_prompt2+' </s> .'+" What are the side effects of these two drugs?"
         # load and process text
         text_path = os.path.join(self.root, 'text/'+str(index)+'/', text_name_list[0])
         
@@ -418,7 +418,8 @@ class MoleculeCaption_double_fgtvalue(Dataset):
         else:
             smiles_prompt2 = self.prompt
             
-        smiles_prompt = smiles_prompt1+"The front is the chromophore, followed by the solvent."+smiles_prompt2+"What is the Emission max?"
+
+        smiles_prompt = '</s> '+smiles_prompt1+' </s>'+' </s>'+smiles_prompt2+' </s> .'+" What is the Emission max?"
         # load and process text
         text_path = os.path.join(self.root, 'text/'+str(index)+'/', text_name_list[0])
         
