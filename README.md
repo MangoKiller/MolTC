@@ -3,7 +3,7 @@ Junfeng Fang, Shuai Zhang, Chang Wu, Zhengyi Yang, Zhiyuan Liu, Sihang Li, Kun W
 
 Arxiv: [https://arxiv.org/abs/2402.03781](https://arxiv.org/abs/2402.03781)
 
-If you have any questions, please contact fjf@mail.ustc.edu.cn.
+This paper has accepted by ACL2024. If you have any questions, please contact fjf@mail.ustc.edu.cn.
 
 
 ## Requirements
