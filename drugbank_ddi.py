@@ -150,7 +150,7 @@ print(text[0][3])
 
 
 output_dict = {}
-with open('data/ddi_data/output_modified.csv', 'r', encoding='utf-8') as csvfile:
+with open('data/ddi_data/output.csv', 'r', encoding='utf-8') as csvfile:
     reader = csv.reader(csvfile)
     for row in reader:
         output_dict[row[0]] = row[1]
