@@ -38,7 +38,7 @@ conda env create -f environment.yml
 
 
 
-**pretraining stage1.** We randomly recombine the molecules in the molecule set in pairs, so that the large language model can recognize two molecules:
+**pretraining stage1.** We randomly recombine the molecules in the molecule set in pairs, so that the large language model can recognize two molecules( For all_checkpoints/pretrain1/last.ckpt, we refer to the [molca](https://github.com/acharkq/MolCA) article):
 
 ```bash
 python q-former.py
