@@ -56,7 +56,7 @@ python drugbank_ddi.py
 python ZhangDDI.py
 python ChChMiner.py
 python DeepDDI.py
-python TWOSIDES.py
+python twosides.py
 ```
 
 **Fine-tune stage.** Run the following script for training stage on the Drugbank, ZhangDDI, ChChMiner, DeepDDI, TWOSIDES dataset:
