@@ -145,7 +145,7 @@ import numpy as np
 import os
 from shutil import copy
 import pandas as pd
-data = pd.read_csv("data/solve_data/data_faguangtuan_data_Lifetime (ns).csv")
+data = pd.read_csv("/home/fangjf/git-code/data/all_togater_data/data_faguangtuan_data_Absorption max (nm).csv")
 
 def calculate_bounds(number):
     # 找到输入整数所在的整10倍数区间
@@ -157,7 +157,7 @@ data = np.array(data)
 #data/solve_data/train/
 idx = np.random.permutation(len(data))
 train_idx = idx[0:int(len(data)*0.9)]
-valid_idx = idx[int(len(data)*0.9):len(data)]
+test_idx = idx[int(len(data)*0.9):len(data)]
 for i in range(len(train_idx)):
     #data[train_idx[i]]
     os.makedirs("data/solve_data/data_faguangtuan_data_Lifetime (ns)/train/smiles1/"+str(i))
@@ -165,7 +165,7 @@ for i in range(len(train_idx)):
     os.makedirs("data/solve_data/data_faguangtuan_data_Lifetime (ns)/train/graph1/"+str(i))
     os.makedirs("data/solve_data/data_faguangtuan_data_Lifetime (ns)/train/graph2/"+str(i))
     os.makedirs("data/solve_data/data_faguangtuan_data_Lifetime (ns)/train/text/"+str(i))
-    os.makedirs("data/ddi_data/data_faguangtuan_data_Lifetime (ns)/train/query/"+str(i))
+    os.makedirs("data/solve_data/data_faguangtuan_data_Lifetime (ns)/train/query/"+str(i))
 
 
     data1 = mol_to_graph_data_obj_simple(data[train_idx[i]][0])
@@ -174,7 +174,7 @@ for i in range(len(train_idx)):
     torch.save(data1,"data/solve_data/data_faguangtuan_data_Lifetime (ns)/train/graph2/"+str(i)+'/graph_data.pt')
     value = data[train_idx[i]][2]
     lower, upper = calculate_bounds(value)
-    text = "The solvation Gibbs free energy of these two molecules is above "+str(lower)+" and below "+str(upper)+", so the accurate value is "+str('%.2f'%value)+";"
+    text = "The Absorption max of these two molecules is above "+str(lower)+" and below "+str(upper)+", so the accurate value is "+str('%.2f'%value)+";"
     file = open("data/solve_data/data_faguangtuan_data_Lifetime (ns)/train/text/"+str(i)+"/text.txt","w")
     file.write(text)
     file.close()
@@ -187,7 +187,7 @@ for i in range(len(train_idx)):
     file.write(smiles2)
     file.close()
     query = data[train_idx[i]][3]
-    file = open("data/ddi_data/data_faguangtuan_data_Lifetime (ns)/train/query/"+str(i)+"/text.txt","w")
+    file = open("data/solve_data/data_faguangtuan_data_Lifetime (ns)/train/query/"+str(i)+"/text.txt","w")
     file.write(query)
     file.close()
 
@@ -199,7 +199,7 @@ for i in range(len(test_idx)):
     os.makedirs("data/solve_data/data_faguangtuan_data_Lifetime (ns)/test/graph1/"+str(i))
     os.makedirs("data/solve_data/data_faguangtuan_data_Lifetime (ns)/test/graph2/"+str(i))
     os.makedirs("data/solve_data/data_faguangtuan_data_Lifetime (ns)/test/text/"+str(i))
-    os.makedirs("data/ddi_data/data_faguangtuan_data_Lifetime (ns)/test/query/"+str(i))
+    os.makedirs("data/solve_data/data_faguangtuan_data_Lifetime (ns)/test/query/"+str(i))
 
 
     data1 = mol_to_graph_data_obj_simple(data[test_idx[i]][0])
@@ -208,7 +208,7 @@ for i in range(len(test_idx)):
     torch.save(data1,"data/solve_data/data_faguangtuan_data_Lifetime (ns)/test/graph2/"+str(i)+'/graph_data.pt')
     value = data[test_idx[i]][2]
     lower, upper = calculate_bounds(value)
-    text = "The solvation Gibbs free energy of these two molecules is above "+str(lower)+" and below "+str(upper)+", so the accurate value is "+str('%.2f'%value)+";"
+    text = "The Absorption max of these two molecules is above "+str(lower)+" and below "+str(upper)+", so the accurate value is "+str('%.2f'%value)+";"
     file = open("data/solve_data/data_faguangtuan_data_Lifetime (ns)/test/text/"+str(i)+"/text.txt","w")
     file.write(text)
     file.close()
@@ -221,7 +221,7 @@ for i in range(len(test_idx)):
     file.write(smiles2)
     file.close()
     query = data[test_idx[i]][3]
-    file = open("data/ddi_data/data_faguangtuan_data_Lifetime (ns)/test/query/"+str(i)+"/text.txt","w")
+    file = open("data/solve_data/data_faguangtuan_data_Lifetime (ns)/test/query/"+str(i)+"/text.txt","w")
     file.write(query)
     file.close()
 
