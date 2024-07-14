@@ -6,7 +6,7 @@ import pytorch_lightning as pl
 from pytorch_lightning import Trainer, strategies
 import pytorch_lightning.callbacks as plc
 from pytorch_lightning.loggers import CSVLogger
-from data_provider.stage2_dm import Stage2DM,Stage2DM_double,Stage2DM_double_value,Stage2DM_double_DDIvalue,Stage2DM_double_fgtvalue
+from data_provider.stage2_dm import Stage2DM,Stage2DM_double,Stage2DM_double_value,Stage2DM_double_DDIvalue,Stage2DM_double_fgtvalue,Stage2DM_universal
 from data_provider.iupac_dm import IupacDM
 from data_provider.stage2_chebi_dm import Stage2CheBIDM
 from model.blip2_stage2 import Blip2Stage2
@@ -61,15 +61,7 @@ def main(args):
             if args.double == True:
                 dm = Stage2DM_double(args.mode, args.num_workers, args.batch_size, args.root, args.text_max_len, tokenizer, args)
             else:
-                if args.solve == True and args.DDI == False:
-                    print("----------------------------------------------------------------********************************")
-                    dm = Stage2DM_double_value(args.mode, args.num_workers, args.batch_size, args.root, args.text_max_len, tokenizer, args)
-                elif args.DDI == True:
-                    dm = Stage2DM_double_DDIvalue(args.mode, args.num_workers, args.batch_size, args.root, args.text_max_len, tokenizer, args)
-                elif args.fangguangtuan == True:
-                    dm = Stage2DM_double_fgtvalue(args.mode, args.num_workers, args.batch_size, args.root, args.text_max_len, tokenizer, args)
-                else :
-                    dm = Stage2DM(args.mode, args.num_workers, args.batch_size, args.root, args.text_max_len, tokenizer, args)
+                dm = Stage2DM_universal(args.mode, args.num_workers, args.batch_size, args.root, args.text_max_len, tokenizer, args)
     
     callbacks = []
     ## fixme save only used parameters
