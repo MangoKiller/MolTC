@@ -442,6 +442,101 @@ class MoleculeCaption_double_fgtvalue(Dataset):
                                         return_tensors='pt',
                                         return_attention_mask=True)
         return sentence_token
+class MoleculeCaption_universal(Dataset):
+    def __init__(self, root, text_max_len, prompt=None):
+        super(MoleculeCaption_universal, self).__init__(root)
+        self.root = root
+        self.text_max_len = text_max_len
+        self.tokenizer = None
+        
+        if not prompt:
+            self.prompt = 'The SMILES of this molecule is [START_I_SMILES]{}[END_I_SMILES]. '
+        else:
+            self.prompt = prompt
+
+    def get(self, index):
+        return self.__getitem__(index)
+
+    def len(self):
+        return len(self)
+
+    def __len__(self):
+
+        if 'train' in self.root:
+            return count_subdirectories(self.root+"text/")
+        else :
+            return count_subdirectories(self.root+"text/")
+    #return 5
+
+    def __getitem__(self, index):
+        graph1_name_list = os.listdir(self.root+'graph1/'+str(index)+'/')
+        smiles1_name_list = os.listdir(self.root+'smiles1/'+str(index)+'/')
+        graph2_name_list = os.listdir(self.root+'graph2/'+str(index)+'/')
+        smiles2_name_list = os.listdir(self.root+'smiles2/'+str(index)+'/')
+        text_name_list = os.listdir(self.root+'text/'+str(index)+'/')
+        query_name_list = os.listdir(self.root+'query/'+str(index)+'/')
+        
+        # load and process graph
+        graph_path = os.path.join(self.root, 'graph1/'+str(index)+'/',graph1_name_list[0])
+        data_graph1 = torch.load(graph_path)
+        # load and process smiles
+        smiles_path = os.path.join(self.root, 'smiles1/'+str(index)+'/', smiles1_name_list[0])
+        with open(smiles_path, 'r', encoding='utf-8') as f:
+            lines = f.readlines()
+            assert len(lines) == 1
+            smiles = lines[0].strip()
+        #这里的smiles是正常的smiles呢
+        if self.prompt.find('{}') >= 0:
+            smiles_prompt1 = self.prompt.format(smiles[:128])
+        else:
+            smiles_prompt1 = self.prompt
+        
+        
+        # load and process graph
+        graph_path = os.path.join(self.root, 'graph2/'+str(index)+'/',graph2_name_list[0])
+        data_graph2 = torch.load(graph_path)
+        # load and process smiles
+        smiles_path = os.path.join(self.root, 'smiles2/'+str(index)+'/', smiles2_name_list[0])
+        with open(smiles_path, 'r', encoding='utf-8') as f:
+            lines = f.readlines()
+            assert len(lines) == 1
+            smiles = lines[0].strip()
+        #这里的smiles是正常的smiles呢
+        if self.prompt.find('{}') >= 0:
+            smiles_prompt2 = self.prompt.format(smiles[:128])
+        else:
+            smiles_prompt2 = self.prompt
+
+        query_path = os.path.join(self.root, 'query/'+str(index)+'/', query_name_list[0])
+        with open(query_path, 'r', encoding='utf-8') as f:
+            lines = f.readlines()
+            assert len(lines) == 1
+            query = lines[0].strip()
+        smiles_prompt = '</s> '+smiles_prompt1+' </s>'+' </s>'+smiles_prompt2+' </s> . '+query
+        #smiles_prompt = smiles_prompt1+"The front is the first molecule, followed by the second molecule."+smiles_prompt2+"What are the side effects of these two drugs?"
+        # load and process text
+
+        text_path = os.path.join(self.root, 'text/'+str(index)+'/', text_name_list[0])
+        
+        text_list = []
+        count = 0
+        for line in open(text_path, 'r', encoding='utf-8'):
+            count += 1
+            text_list.append(line.strip('\n'))
+            if count > 100:
+                break
+        text = ' '.join(text_list)
+        return data_graph1,data_graph2, text ,smiles_prompt
+    
+    def tokenizer_text(self, text):
+        sentence_token = self.tokenizer(text=text,
+                                        truncation=True,
+                                        padding='max_length',
+                                        add_special_tokens=True,
+                                        max_length=self.text_max_len,
+                                        return_tensors='pt',
+                                        return_attention_mask=True)
+        return sentence_token  
     
 if __name__ == '__main__':
     import numpy as np
